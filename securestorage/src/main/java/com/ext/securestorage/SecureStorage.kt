@@ -24,7 +24,14 @@ object SecureStorage {
         )
     }
 
+    private fun checkInit() {
+        if (!::prefs.isInitialized) {
+            throw IllegalStateException("SecureStorage is not initialized. Call SecureStorage.init(context)")
+        }
+    }
+
     fun putString(key: String, value: String) {
+        checkInit()
         prefs.edit().putString(key, value).apply()
     }
 
@@ -33,6 +40,7 @@ object SecureStorage {
     }
 
     fun putInt(key: String, value: Int) {
+        checkInit()
         prefs.edit().putInt(key, value).apply()
     }
 
@@ -41,6 +49,7 @@ object SecureStorage {
     }
 
     fun putBoolean(key: String, value: Boolean) {
+        checkInit()
         prefs.edit().putBoolean(key, value).apply()
     }
 
@@ -49,6 +58,7 @@ object SecureStorage {
     }
 
     fun putFloat(key: String, value: Float) {
+        checkInit()
         prefs.edit().putFloat(key, value).apply()
     }
 
@@ -57,6 +67,7 @@ object SecureStorage {
     }
 
     fun putLong(key: String, value: Long) {
+        checkInit()
         prefs.edit().putLong(key, value).apply()
     }
 
@@ -71,4 +82,6 @@ object SecureStorage {
     fun clear() {
         prefs.edit().clear().apply()
     }
+
+
 }
