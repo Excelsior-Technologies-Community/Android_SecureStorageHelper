@@ -1,10 +1,12 @@
 package com.ext.android_securestoragehelper
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.ext.securestorage.SecureStorage
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,5 +18,11 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        SecureStorage.init(this)
+
+        SecureStorage.putString("token", "abc123")
+
+        val token = SecureStorage.getString("token")
+        Log.d("token",token.toString())
     }
 }
